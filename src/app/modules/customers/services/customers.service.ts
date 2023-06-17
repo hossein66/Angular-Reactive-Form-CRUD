@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CountryCode, isValidPhoneNumber } from 'libphonenumber-js';
-import { MessageService } from '../../shared/services/message.service';
-import { Customer } from '../models/customers';
+import { Customer } from '../models/customer';
 import { IServiceResult } from '../../shared/models/service-result';
 
 @Injectable({
@@ -9,7 +8,7 @@ import { IServiceResult } from '../../shared/models/service-result';
 })
 export class CustomersService {
   customers: Customer[] ;
-  constructor(private messageService:MessageService) { }
+  constructor() { }
 
   getcustomers():Customer[] {
     if(localStorage.getItem('customers') === null) {
