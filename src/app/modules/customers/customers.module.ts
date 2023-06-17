@@ -3,6 +3,7 @@ import { NgxMatIntlTelInputModule } from 'ngx-mat-intl-tel-input-angular-13';
 import { SharedModule } from '../shared/shared.module';
 import { AddCustomerComponent } from './components/add-customer/add-customer.component';
 import { CustomersListComponent } from './components/customers-list/customers-list.component';
+import { DeleteCustomersComponent } from './components/delete-customers/delete-customers.component';
 import { EditCustomersComponent } from './components/edit-customers/edit-customers.component';
 import { CustomersRoutingModule } from './customers-routing.module';
 
@@ -10,7 +11,8 @@ import { CustomersRoutingModule } from './customers-routing.module';
   declarations: [
     CustomersListComponent,
     AddCustomerComponent,
-    EditCustomersComponent
+    EditCustomersComponent,
+    DeleteCustomersComponent
   ],
   imports: [
     SharedModule,

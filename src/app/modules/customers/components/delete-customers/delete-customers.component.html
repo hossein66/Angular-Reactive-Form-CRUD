@@ -1,0 +1,62 @@
+<div class="form">
+<mat-toolbar color="primary" class="header">
+  <span class="title-center mat-h1">Delete Customer</span>
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav-content>
+    <form [formGroup]="deleteForm" (ngSubmit)="onSubmit()" novalidate>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="FirstName" formControlName="Firstname" />
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="LastName" formControlName="Lastname" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput readonly [matDatepicker]="picker" placeholder="Date of birth" formControlName="DateOfBirth" >
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-datepicker-toggle matSuffix [for]="picker">
+        </mat-datepicker-toggle>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Email" formControlName="Email" />
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <ngx-mat-intl-tel-input
+          placeholder="Phone Number"
+          [preferredCountries]="['us', 'gb']"
+          [enablePlaceholder]="true"
+          [enableSearch]="true"
+          name="PhoneNumber"
+          describedBy="phoneInput"
+          formControlName="PhoneNumber"
+        ></ngx-mat-intl-tel-input>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input
+          matInput
+          placeholder="Bank Account Number"
+          formControlName="BankAccountNumber"
+        />
+      </mat-form-field>
+      <div class="button-wrapper action-button">
+        <button
+          [disabled]="this.deleteForm.invalid"
+          mat-flat-button
+          color="primary"
+        >
+          Delete
+        </button>
+        <button mat-flat-button color="default" [routerLink]="['/customers']">
+          Cancel
+        </button>
+      </div>
+    </form>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+</div>
