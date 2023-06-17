@@ -1,0 +1,76 @@
+<div class="form">
+<mat-toolbar color="primary" class="header">
+    <span class="title-center mat-h1">Edit Customer</span>
+  </mat-toolbar>
+  
+  <mat-sidenav-container>
+    <mat-sidenav-content>
+      <form [formGroup]="editForm" (ngSubmit)="onSubmit()" novalidate>
+        <mat-form-field class="example-full-width">
+          <input matInput  placeholder="FirstName" formControlName="Firstname">
+          <mat-error *ngIf="errorHandling('Firstname', 'required')">
+            You must provide a <strong> FirstName</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput  placeholder="LastName" formControlName="Lastname">
+          <mat-error *ngIf="errorHandling('Lastname', 'required')">
+            You must provide a <strong> Lastname</strong>
+          </mat-error>
+        </mat-form-field>
+   
+        <mat-form-field>
+          <input (dateChange)="date($event)" matInput readonly [matDatepicker]="picker" placeholder="Date of birth" formControlName="DateOfBirth" >
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-datepicker-toggle matSuffix [for]="picker">
+          </mat-datepicker-toggle>
+          <mat-error *ngIf="errorHandling('DateOfBirth', 'required')">
+            Please enter <strong>date of birth</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput  placeholder="Email" formControlName="Email">
+          <mat-error *ngIf="errorHandling('Email', 'required')">
+            You must provide a <strong>Email</strong>
+          </mat-error>
+          <mat-error *ngIf="errorHandling('Email', 'email')">
+            You must provide a valid <strong>Email</strong>
+          </mat-error>
+        </mat-form-field>
+  
+        <mat-form-field class="example-full-width">
+          <ngx-mat-intl-tel-input  placeholder="Phone Number"
+          [preferredCountries]="['us', 'gb']"
+          [enablePlaceholder]="true"
+          [enableSearch]="true"
+          name="PhoneNumber"
+          describedBy="phoneInput"
+          formControlName="PhoneNumber"></ngx-mat-intl-tel-input>
+          <mat-error *ngIf="errorHandling('PhoneNumber', 'required')">
+            You must provide a <strong>PhoneNumber</strong>
+          </mat-error>
+          <mat-error *ngIf="!editForm.controls['PhoneNumber'].valid">
+            You must provide a valid <strong>PhoneNumber</strong>
+          </mat-error>
+        </mat-form-field>
+      
+        <mat-form-field class="example-full-width">
+          <input  matInput placeholder="Bank Account Number" formControlName="BankAccountNumber">
+          <mat-error *ngIf="errorHandling('BankAccountNumber', 'required')">
+            You must provide a <strong>BankAccountNumber</strong>
+          </mat-error>
+          <mat-error *ngIf="   errorHandling('BankAccountNumber', 'bankAccountNumberError')">
+            You must provide a valid <strong>BankAccountNumber</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <div class="button-wrapper action-button">
+          <button [disabled]="this.editForm.invalid" mat-flat-button color="primary">Edit</button>
+          <button  mat-flat-button color="default" [routerLink]="['/customers']">Cancel</button>
+        </div>
+      </form>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
