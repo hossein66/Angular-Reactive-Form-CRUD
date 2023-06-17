@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { CountryCode, isValidPhoneNumber } from 'libphonenumber-js';
 import { MessageService } from '../../shared/services/message.service';
 import { Customer } from '../models/customers';
 import { IServiceResult } from '../../shared/models/service-result';
@@ -126,8 +127,8 @@ export class CustomersService {
         return false;
     }
   }
-  isValidPhoneNumber(contry: string,phoneNumber:string){ 
-    return true;
+  isValidPhoneNumber(contry: CountryCode,phoneNumber:string){ 
+    return isValidPhoneNumber(phoneNumber, contry);
 }
   isValidAccountNumber(accountNumber:string){
     let regex = new RegExp(/^[0-9]{9,18}$/);
