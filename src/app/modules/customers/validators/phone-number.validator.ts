@@ -3,7 +3,8 @@ import { CustomersService } from "../services/customers.service";
 
     export function PhoneNumberValidator(customerService: CustomersService): ValidatorFn {
       return (control: AbstractControl ): { [key: string]: any  } | null  => {
-        return customerService.isValidPhoneNumber(control.value.countryCode,control.value.number) ? 
+        console.log(control)
+        return !customerService.isValidPhoneNumber(control.value.countryCode,control.value.number) ? 
         { phoneNumberError : true } : null;
       };
     }
