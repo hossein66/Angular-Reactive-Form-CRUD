@@ -2,12 +2,14 @@
 import { HttpClientModule } from "@angular/common/http";
 import { ModuleWithProviders, NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { MaterialModule } from "./material.module";
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    MaterialModule
  ],
   entryComponents: [
     // All components about to be loaded "dynamically" need to be declared in the entryComponents section.
@@ -20,7 +22,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    
+    MaterialModule
 
   ],
   /* No providers here! Since they’ll be already provided in AppModule. */
