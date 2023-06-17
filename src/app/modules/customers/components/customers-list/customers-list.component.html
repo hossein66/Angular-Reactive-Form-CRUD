@@ -1,0 +1,96 @@
+
+  <mat-toolbar color="primary" class="header">
+    <span class="title-center mat-h1">Customers List</span>
+  </mat-toolbar>
+  
+  <div fxLayout="row wrap" fxLayoutGap="10px" fxLayout.xs="column">
+    <div fxFlex fxFlexAlign="left"></div>
+    <div fxFlex>
+      <mat-form-field class="form-field">
+        <input
+          matInput
+          type="text"
+          placeholder="Search Customer by lastName & email  & ..."
+          [(ngModel)]="value"
+          (keyup)="applyFilter(value)"
+        />
+        <button
+          mat-button
+          *ngIf="value"
+          matSuffix
+          mat-icon-button
+          aria-label="Clear"
+          (click)="value=''; dataSource.filter=''"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="mat-elevation-z8">
+    <mat-table #table [dataSource]="dataSource" matSort matSortActive="DateOfBirth" matSortDirection="desc" matSortDisableClear>
+      <ng-container
+        *ngFor="let column of columns, let i=index"
+        [cdkColumnDef]="column.columnDef"
+      >
+      <ng-container *ngIf="column.columnDef!='action'" >
+        <mat-header-cell *cdkHeaderCellDef mat-sort-header
+        >{{ column.header }}</mat-header-cell      >
+      </ng-container>
+      <ng-container *ngIf="column.columnDef=='action'">
+        <mat-header-cell *cdkHeaderCellDef style="margin-left: 50px;">
+          <button mat-mini-fab color="accent" [routerLink]="['add']" matTooltip="Add Customer"  >
+            <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+          </button>
+        </mat-header-cell>
+      </ng-container>
+  
+        <mat-cell *cdkCellDef="let row">
+          <ng-container          *ngIf="column.columnDef=='action'">
+            <button  mat-icon-button color="accent" [routerLink]="['edit']" [state]=row matTooltip="Edit Customer" >
+              <mat-icon aria-label="Edit">edit</mat-icon>
+            </button>
+            <button  mat-icon-button color="accent" [routerLink]="['delete']" [state]=row matTooltip="Delete Customer" >
+              <mat-icon aria-label="Delete">delete</mat-icon>
+            </button>
+          </ng-container>
+          <ng-container *ngIf="column.columnDef!='action'">
+            <span [innerHTML]="column.cell(row) ">
+            </span>
+        
+          </ng-container>
+       
+        </mat-cell>
+  
+  
+      </ng-container>
+  
+      <ng-container  
+      matColumnDef="noData" >
+        <mat-footer-cell
+          *matFooterCellDef
+          [attr.colspan]="displayedColumns.length"
+        >
+          <div >No records found.</div>
+        </mat-footer-cell>
+      </ng-container>
+  
+      <mat-header-row
+        *matHeaderRowDef="displayedColumns "
+      ></mat-header-row>
+      <mat-row
+        *matRowDef="let row; columns: displayedColumns "
+      ></mat-row>
+      <mat-footer-row
+        *matFooterRowDef="['noData']"
+        [ngClass]="{'hidden':!(dataSource !== null && dataSource.filteredData.length === 0)}"
+      >
+      </mat-footer-row>
+    </mat-table>
+    <mat-paginator
+      [pageSizeOptions]="[2, 5, 10]"
+      showFirstLastButtons
+    ></mat-paginator>
+  </div>
+
