@@ -1,0 +1,8 @@
+{
+    "/": {
+      "target": "https://www.emdadsaipa.ir",
+      "secure": false,
+      "changeOrigin":true,
+      "logLevel":"debug"
+    }
+  }
