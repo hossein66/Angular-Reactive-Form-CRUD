@@ -10,15 +10,6 @@ const routes: Routes = [
       import("./modules/customers/customers.module").then(
         (m) => m.CustomersModule
       ),
-
-  },
-  {
-    path: "crawler",
-    loadChildren: () =>
-    import("./modules/crwaler-web/crwaler-web.module").then(
-      (m) => m.CrwalerWebModule
-    ),
-
   },
   { path: "", redirectTo: "home", pathMatch: "full" },
   { path: "**", redirectTo: "" },
